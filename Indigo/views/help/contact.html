@@ -1,0 +1,23 @@
+{{if .Pjax}}
+	{{template "header.html" .}}
+	<meta property="og:description" content="Learn where to contact the olv2 team if you have any questions, or in the case of an emergency.">
+{{else}}
+	<title>{{.Title}} - olv2</title>
+{{end}}
+<div id="main-body" class="profile-top">
+    {{template "general_sidebar.html" .}}
+    <div class="main-column" id="help">
+		<div class="post-list-outline">
+			<h2 class="label">Contact the Team</h2>
+			<div id="guide" class="help-content">
+				<p>If you need to contact the site's development team for any reason, you can find out how to do so here. Please note that if you have a question, you should first consult the <a href="/help/faq">FAQ page.</a></p>
+			f="/users/User">User</a></p>
+			<p>Name:Kamil, Owner for this project
+			</div>
+		</div>
+    </div>
+</div>
+{{if .Pjax}}
+    {{template "footer.html"}}
+            <link rel="stylesheet" type="text/css" href="./offdevice.css"><style>
+{{end}}

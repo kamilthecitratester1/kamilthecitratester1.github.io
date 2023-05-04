@@ -1,0 +1,86 @@
+{{if .Pjax}}
+    {{template "header.html" .}}
+    <meta property="og:profile:username" content="User">
+    <meta property="og:description" content="{{if .Sidebar.Profile.Comment}}{{.Sidebar.Profile.Comment}}{{else}}View {{.User.Nickname}}'s profile on Indigo.{{end}}">
+    {{if .Sidebar.Profile.FavoritePostImage}}<meta property="og:image" content="{{.Sidebar.Profile.FavoritePostImage}}">{{end}}
+{{else}}
+    <title>{{.Title}} - Indigo</title>
+{{end}}
+<div id="main-body" class="profile-top">
+    {{template "profile_sidebar.html" .Sidebar}}
+<div id="sidebar" class="user-sidebar">
+     {{if .CurrentUser.Username}}
+        <div class="sidebar-container">
+            <div id="sidebar-profile-body">
+                <div username="User" class="icon-container
+                {{if not .CurrentUser.HideOnline}}
+                    {{if .CurrentUser.Online}}
+                        online
+                    {{else}}
+                        offline
+                    {{end}}
+                {{end}}
+                {{if .CurrentUser.Role.Image}} official-user"><img src="{{.CurrentUser.Role.Image}}" class="official-tag">{{else}}">{{end}}
+                    <a href="/users/{{.CurrentUser.Username}}"><img src="{{.CurrentUser.Avatar}}" alt="User_OldName" class="icon"></a>
+                </div>
+                {{if .CurrentUser.Role.Organization}}<p class="user-organization"></p>
+                <a href="/users/User" class="nick-name"{{if .CurrentUser.Color}} style="color:{{.CurrentUser.Color}}"{{end}}>User</a>
+                <p class="id-name">User_OldName</p>
+            </div>
+            <button class="button" onclick="Olv.Closed.lights()">Toggle dark mode</button>
+            <ul id="sidebar-profile-status">
+                <li><a href="/users/User/friends"><span><span class="number test-friend-count">0</span>Friends</span></a></li>
+                <li><a href="/users/User/following"><span><span class="number test-following-count">0</span>Following</span></a></li>
+                <li><a href="/users/User/followers"><span><span class="number test-follower-count">0</span>Followers</span></a></li>
+            </ul>
+        </div>
+    {{end}}
+    <div class="sidebar-container sidebar-setting">
+        <ul>
+            <li><a href="/help/rules" class="sidebar-menu-info symbol"><span>Olive2 Rules</span></a></li>
+            <li><a href="/help/legal" class="sidebar-menu-guide symbol"><span>Legal Information</span></a></li>
+            <li><a href="/help/contact" class="sidebar-menu-info symbol"><span>Contact the Team</span></a></li>
+	    </ul>
+    </div>
+</div>
+    <div class="main-column">
+        <div class="post-list-outline">
+            <h2 class="label">Recent posts</h2>
+            {{if .Posts}}
+                <div class="post-body">
+                    <div class="list multi-timeline-post-list">
+                        {{range $post := .Posts}}
+                            {{template "render_user_post.html" $post}}
+                        {{end}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="post-list empty">
+                    <p>The user hasn't made any posts yet.</p>
+                </div>
+            {{end}}
+        </div>
+        <a class="big-button" href="/users/User/posts">View posts</a>
+        <div class="post-list-outline">
+            <h2 class="label">Recently yeahed posts</h2>
+            {{if .Yeahs}}
+                <div class="post-body">
+                    <div class="list multi-timeline-post-list">
+                    {{range $post := .Yeahs}}
+                        {{template "render_user_post.html" $post}}
+                    {{end}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="post-list empty">
+                    <p>The user hasn't given a yeah to any posts yet.</p>
+                </div>
+            {{end}}
+        </div>
+        <a class="big-button" href="/users/User/yeahs">View all yeahs</a>
+    <link rel="stylesheet" type="text/css" href="./offdevice.css"><style>
+    </div>
+</div>
+{{if .Pjax}}
+    {{template "footer.html"}}
+{{end}}
