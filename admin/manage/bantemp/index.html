@@ -1,0 +1,39 @@
+{{if .Pjax}}
+    {{template "header.html" .}}
+{{else}}
+    <title>AdminManager - Olive2</title>
+{{end}}
+<div id="main-body">
+    <div id="sidebar">
+        <menu id="admin-menu">
+            <li id="admin-menu-list">
+                <ul>
+                    <li id="admin-menu-dashboard"><a href="/admin" class="symbol"><span>Dashboard</span></a></li>
+                    <li id="admin-menu-manage" class="selected"><a href="/admin/manage" class="symbol"><span>Manage</span></a></li>
+                    {{if le .Admin.Settings.MinimumLevel .CurrentUser.Level}}<li id="admin-menu-settings"><a href="/admin/settings" class="symbol"><span>Settings</span></a></li>{{end}}
+                </ul>
+            </li>
+        </menu>
+    </div>
+    <div class="main-column">
+        <div class="post-list-outline">
+            <h2 class="label">Ban User Temp Error</h2>
+            <p style="margin:20px 10px 0px">error 222- Feature Not Implemented</p>
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{.CurrentUser.CSRFToken}}">
+                <p class="settings-label">Ban User</p>
+                <input type="text" name="username" placeholder="Username">
+                <p><label class="note">Ban entire IP range: <input type="checkbox" name="cidr" value="1"></label></p>
+                <label class="note">Length:
+                    <select name="length">
+                        <option value="-1">test1</option>
+                        <option value="-2">test2</option>
+                    </select>
+                </label><br>
+            </form>
+        </div>
+    </div>
+</div>
+{{if .Pjax}}
+    {{template "footer.html"}}
+            <link rel="stylesheet" type="text/css" href="./offdevice.css"><style>
+{{end}}
